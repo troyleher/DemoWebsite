@@ -1,0 +1,8 @@
+org\dating\managedbeans\support\TemplateSupport.class
+org\dating\managedbeans\model\EntityFactory.class
+org\dating\jsf\validators\DateValidator.class
+org\dating\managedbeans\model\UserBean.class
+org\dating\managedbeans\controllers\SignupFlowController.class
+org\dating\jsf\converter\DateConverter.class
+org\dating\managedbeans\support\UserSupport.class
+org\dating\managedbeans\controllers\UserController.class

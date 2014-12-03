@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../templates/template.xhtml">
+            <ui:define name="title" >Create User</ui:define>
+            <ui:define name="content">
+                <h:form prependId="false">
+                    
+                    <h:panelGrid columns="3" id="grid">
+                        
+                        <f:event listener="#{signupFlowController.comparePasswords}" type="postValidate" />
+                        
+                        <p:outputLabel value="#{bundle['user.create.email']}" />
+                        <p:inputText id="email" value="#{signupFlowController.user.email}" />
+                        <p:message for="email" />
+
+                        <p:outputLabel value="#{bundle['user.create.name']}" />
+                        <p:inputText id="name" value="#{signupFlowController.user.name}" />
+                        <p:message for="name" />
+
+                        <p:outputLabel value="#{bundle['user.create.gender']}" />
+                        <p:selectOneMenu id="gender" value="#{signupFlowController.user.gender}" >
+                            <f:selectItems value="#{userSupport.genderValues}" var="g" itemValue="#{g}"  />
+                        </p:selectOneMenu>
+                        <p:message for="gender"/>
+
+                        <p:outputLabel value="Date of Birth" />
+                        <p:inputMask id="dob" value="#{signupFlowController.user.dob}" mask="99/99/9999" converter="#{dateConverter}">
+                         </p:inputMask>
+                        <p:message for="dob"  />
+                        
+                        <p:outputLabel value="Looking for"/>
+                        <p:selectOneMenu id="seeking" value="#{signupFlowController.user.seeks}" >
+                            <f:selectItems value="#{userSupport.genderValues}" var="g" itemValue="#{g}"  />
+                        </p:selectOneMenu>
+                        <p:message for="seeking"/>
+                        
+                        <p:outputLabel value="Password"/>
+                        <p:password id="password" value="#{signupFlowController.user.password}"/>
+                        <p:message for="password"/>
+                        
+                         <p:outputLabel value="Confirm password"/>
+                         <p:password id="passwordConfirmation" value="#{flowScope.passwordConfirmation}"/>
+                        <p:message for="passwordConfirmation"/>
+                        
+                        <f:facet name="footer">
+                            <h:panelGroup style="display: block; text-align: right">
+                                <p:commandButton value="Create" action="submit" update="grid"/>
+                                <p:commandButton value="Continue" action="signup2" update="grid"/>
+                            </h:panelGroup>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
