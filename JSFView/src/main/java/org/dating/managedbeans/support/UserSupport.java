@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import org.troy.global.persistance.entities.User;
+import org.troy.global.persistance.entities.User.City;
 import org.troy.global.persistance.entities.User.Gender;
 
 /**
@@ -34,6 +36,9 @@ public class UserSupport {
 
     public Gender[] getGenderValues() {
         return Gender.values();
+    }
+    public City[] getCityValues(){
+        return City.values();
     }
 
     public Date getCalenderMinDate() {

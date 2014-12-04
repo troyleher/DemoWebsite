@@ -59,11 +59,15 @@ public class SignupFlowController implements Serializable {
 
         String passwordConfirmation = getComponentValue("passwordConfirmation", components);
 
-        if (password.isEmpty() || passwordConfirmation.isEmpty()) {
+        if (password.isEmpty()) {
+            FacesMessage msg = new FacesMessage("Password cannot be blank");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            fc.addMessage(passwordId, msg);
+            fc.renderResponse();
             return;
         }
         if (!password.equals(passwordConfirmation)) {
-            FacesMessage msg = new FacesMessage("Password must match confirm password");
+            FacesMessage msg = new FacesMessage("Password must match up");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             fc.addMessage(passwordId, msg);
             fc.renderResponse();

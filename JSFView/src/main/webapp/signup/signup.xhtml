@@ -6,18 +6,17 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition template="../templates/template.xhtml">
-            <ui:define name="title" >Create User</ui:define>
+            <ui:define name="title" >Create profile part 1</ui:define>
             <ui:define name="content">
                 <h:form prependId="false">
-                    
+
                     <h:panelGrid columns="3" id="grid">
-                        
+
                         <f:event listener="#{signupFlowController.comparePasswords}" type="postValidate" />
-                        
+
                         <p:outputLabel value="#{bundle['user.create.email']}" />
                         <p:inputText id="email" value="#{signupFlowController.user.email}" />
                         <p:message for="email" />
@@ -34,29 +33,32 @@
 
                         <p:outputLabel value="Date of Birth" />
                         <p:inputMask id="dob" value="#{signupFlowController.user.dob}" mask="99/99/9999" converter="#{dateConverter}">
-                         </p:inputMask>
+                        </p:inputMask>
                         <p:message for="dob"  />
-                        
+
                         <p:outputLabel value="Looking for"/>
                         <p:selectOneMenu id="seeking" value="#{signupFlowController.user.seeks}" >
                             <f:selectItems value="#{userSupport.genderValues}" var="g" itemValue="#{g}"  />
                         </p:selectOneMenu>
                         <p:message for="seeking"/>
-                        
+                        <p:outputLabel value="City"></p:outputLabel>
+                        <p:selectOneMenu id="city" value="#{signupFlowController.user.city}">
+                            <f:selectItems value="#{userSupport.cityValues}" var="i" itemValue="#{i}"/>
+                        </p:selectOneMenu>
+                        <p:message for="city"/>
                         <p:outputLabel value="Password"/>
                         <p:password id="password" value="#{signupFlowController.user.password}"/>
                         <p:message for="password"/>
-                        
-                         <p:outputLabel value="Confirm password"/>
-                         <p:password id="passwordConfirmation" value="#{flowScope.passwordConfirmation}"/>
+
+                        <p:outputLabel value="Confirm password"/>
+                        <p:password id="passwordConfirmation" value="#{flowScope.passwordConfirmation}"/>
                         <p:message for="passwordConfirmation"/>
-                        
-                        <f:facet name="footer">
-                            <h:panelGroup style="display: block; text-align: right">
-                                <p:commandButton value="Create" action="submit" update="grid"/>
-                                <p:commandButton value="Continue" action="signup2" update="grid"/>
-                            </h:panelGroup>
-                        </f:facet>
+
+                        <p:outputLabel/>
+                        <h:panelGroup style="display: block; text-align: right">
+                            <p:commandButton value="Create" action="submit" update="grid"/>
+                            <p:commandButton value="Continue" action="signup2" update="grid"/>
+                        </h:panelGroup>
                     </h:panelGrid>
                 </h:form>
             </ui:define>
